@@ -1,5 +1,5 @@
 class Person < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, strict_loading: true
 
   has_many :debts, dependent: :destroy
 
