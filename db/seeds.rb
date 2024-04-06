@@ -1,6 +1,7 @@
 puts "Destroying existing records..."
 User.destroy_all
 Debt.destroy_all
+Payment.destroy_all
 Person.destroy_all
 
 User.create email: 'admin@admin.com', password: '111111'
@@ -31,6 +32,11 @@ end
     person.debts.create(
       amount: Faker::Number.between(from: 1, to: 200),
       observation: Faker::Lorem.paragraph
+    )
+
+    debt.payments.create(
+      amount: Faker::Number.between(from: 1, to: debt.amount),
+      payment_date: Faker::Date.between(from: 1.year.ago, to: Date.today)
     )
   end
 end
