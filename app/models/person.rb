@@ -7,13 +7,10 @@ class Person < ApplicationRecord
   validates :national_id, uniqueness: true
   validate :cpf_or_cnpj
 
-  def balance
-    # Utilize SQL SUM function to sum up the amounts directly in the database
-    payments.sum(:amount) - debts.sum(:amount)
+
+  def update_balance
+    update(balance: payments.sum(:amount) - debts.sum(:amount))
   end
-
-
-
 
   private
 
