@@ -59,6 +59,8 @@ gem 'rails_performance'
 
 gem 'will_paginate', '~> 4.0'
 
+gem "chartkick"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]

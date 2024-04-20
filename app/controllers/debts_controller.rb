@@ -37,7 +37,7 @@ class DebtsController < ApplicationController
     end
   end
 
-  private
+  private 
 
     # Only allow a list of trusted parameters through.
     def debt_params

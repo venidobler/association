@@ -12,6 +12,16 @@ class Person < ApplicationRecord
     update(balance: payments.sum(:amount) - debts.sum(:amount))
   end
 
+  def cached_balance
+    Rails.cache.fetch "balance#{id}" do
+      payments.sum(:amount) - debts.sum(:amount)
+    end
+end
+
+  def clear_balance_cache
+    Rails.cache.clear "balance_#{id}"
+  end
+
   private
 
   def cpf_or_cnpj
