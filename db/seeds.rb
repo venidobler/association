@@ -10,7 +10,7 @@ puts "Usuário criado:"
 puts "login admin@admin.com"
 puts "111111"
 
-100.times do |counter|
+1000.times do |counter|
   puts "Creating user #{counter}"
   User.create email: Faker::Internet.email, password: '111111'
 end

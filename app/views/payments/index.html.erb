@@ -1,14 +1,50 @@
-<p style="color: green"><%= notice %></p>
+<%# TODO: refactor DRY %>
+<% if notice.present? %>
+  <div class="alert alert-success">
+    <%= notice %>
+  </div>
+<% end %>
 
-<h1>Payments</h1>
 
-<div id="payments">
-  <% @payments.each do |payment| %>
-    <%= render payment %>
-    <p>
-      <%= link_to "Show this payment", payment %>
-    </p>
-  <% end %>
+<h1>Pagamentos</h1>
+
+<%= link_to new_payment_path, class: 'btn btn-light btn-sm' do %>
+  <i class="bi bi-plus"></i>
+  Novo pagamento
+<% end %>
+
+<%= will_paginate @payments %>
+
+<div class="table-responsive" id="payments">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Valor</th>
+        <th>Dia</th>
+        <th class="text-end">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr>
+          <td><%= payment.id %></td>
+          <td><%= payment.amount %></td>
+          <td><%= payment.paid_at %></td>
+          <td class="text-end">
+          <div class="btn-group" role="group">
+            <%= link_to edit_payment_path(payment), class: "btn btn-primary mb-2 me-2 rounded-end" do %>
+              <i class="bi bi-pencil"></i>
+            <% end %>
+            <%= button_to payment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Tem certeza?' } do %>
+              <i class="bi bi-trash"></i>
+            <% end %>
+          </div>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
-<%= link_to "New payment", new_payment_path %>
+<%= will_paginate @payments %>

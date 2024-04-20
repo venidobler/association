@@ -11,6 +11,8 @@
     </div>
   <% end %>
 
+  <%= link_to "< Voltar", payments_path, class: 'btn btn-secondary btn-sm' %>
+
   <div class="mb-3">
     <%= form.label :person_id, 'Associado', class: 'form-label' %>
       <div data-controller="autocomplete" data-autocomplete-url-value="<%= search_people_path %>" role="combobox">
@@ -30,7 +32,8 @@
     <%= form.date_field :paid_at, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit 'Salvar', class: 'btn btn-primary btn-lg' %>
   </div>
+
 <% end %>
