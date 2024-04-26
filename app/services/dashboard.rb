@@ -48,7 +48,7 @@ class Dashboard
   def top_person
     Rails.cache.fetch("top_person", expires_in: 1.hour) do
     people = Person.order(balance: :desc)
-    people.last
+    people.first
     end
   end
 
