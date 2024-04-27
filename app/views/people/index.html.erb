@@ -1,16 +1,11 @@
-<%# TODO: refactor DRY %>
-<% if notice.present? %>
-  <div class="alert alert-success">
-    <%= notice %>
-  </div>
-<% end %>
-
 <h1>Associados</h1>
 
 <%= link_to new_person_path, class: 'btn btn-light btn-sm' do %>
   <i class="bi bi-plus"></i>
   Novo associado
 <% end %>
+
+<%= will_paginate @people %>
 
 <ul class="nav nav-tabs my-4">
   <li class="nav-item">
@@ -20,8 +15,6 @@
     <%= link_to 'Inativo', people_path(active: false), class: "nav-link #{'active' unless @active}" %>
   </li>
 </ul>
-
-<%= will_paginate @people %>
 
 <table class="table table-striped">
   <thead>
@@ -45,16 +38,7 @@
         <td><%=l person.created_at, format: :short %></td>
         <td><%= person.user.email %></td>
         <td class="text-center align-middle">
-          <%# TODO: refactor: use a helper method %>
-          <% if person.active %>
-            <span class="text-success">
-              <i class="bi bi-check-circle"></i>
-            </span>
-          <% else %>
-            <span class="text-danger">
-              <i class="bi bi-x-circle"></i>
-            </span>
-          <% end %>
+        <%= active_status_icon(person.active) %>
         </td>
         <td class="text-end align-middle">
           <%= person.balance %>
