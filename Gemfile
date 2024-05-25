@@ -52,6 +52,7 @@ gem "devise-bootstrap5"
 gem 'faker'
 gem 'rails_performance'
 gem 'will_paginate', '~> 4.0'
+gem "sidekiq", "~> 7.2"
 
 gem 'faker'
 
@@ -60,6 +61,11 @@ gem 'rails_performance'
 gem 'will_paginate', '~> 4.0'
 
 gem "chartkick"
+
+group :development do
+  gem 'letter_opener_web', '~> 3.0'
+end
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
