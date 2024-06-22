@@ -52,7 +52,7 @@ gem "devise-bootstrap5"
 gem 'faker'
 gem 'rails_performance'
 gem 'will_paginate', '~> 4.0'
-gem "sidekiq", "~> 7.2"
+gem "sidekiq", "~> 7.2.0"
 
 gem 'faker'
 

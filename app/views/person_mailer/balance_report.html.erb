@@ -1,18 +1,51 @@
-<% require 'csv' %>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Seu Relatório</title>
-  </head>
-  <body>
-    <p>Segue em anexo o relatório de saldo</p>
-    <% csv_data = CSV.generate(headers: true) do |csv| %>
-      <% csv << ['Name', 'Balance'] %>
-      <% @people.each do |person| %>
-        <% csv << [person.name, person.balance] %>
-      <% end %>
-    <% end %>
-    <%= attachments['balance_report.csv'] = { mime_type: 'text/csv', content: csv_data } %>
-  </body>
-</html>
+require_relative "boot"
+require "rails/all"
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+module Association
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.1
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w(assets tasks))
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configure Active Job to use Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+
+  end
+require_relative "boot"
+require "rails/all"
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
+module Association
+  class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 7.1
+    # Please, add to the `ignore` list any other `lib` subdirectories that do
+    # not contain `.rb` files, or that should not be reloaded or eager loaded.
+    # Common ones are `templates`, `generators`, or `middleware`, for example.
+    config.autoload_lib(ignore: %w(assets tasks))
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
+
+    # Configure Active Job to use Sidekiq
+    config.active_job.queue_adapter = :sidekiq
+
+  end
+end

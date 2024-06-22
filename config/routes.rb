@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   # Dashboard
   get 'dashboard/index'
 
-  mount Sidekiq::Web => '/sidekiq'
 
   # Relatório de saldo
   get 'reports/balance'
@@ -26,7 +25,9 @@ Rails.application.routes.draw do
   # Página inicial
   root 'dashboard#index'
   # Configuração do Letter Opener Web apenas em ambiente de desenvolvimento
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  
+
+  mount Sidekiq::Web => '/sidekiq'
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end
