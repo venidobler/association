@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
 
   # Relatório de saldo
-  get 'reports/balance'
+  get 'reports/balance', to: 'reports#balance'
   # Recursos para pagamentos
   resources :payments
   # Devise para autenticação de usuários
@@ -24,10 +24,9 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   # Página inicial
   root 'dashboard#index'
-  # Configuração do Letter Opener Web apenas em ambiente de desenvolvimento
-  
-
+  # Configuração do Letter Opener Web apenas em ambiente de desenvolviment
   mount Sidekiq::Web => '/sidekiq'
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
 end

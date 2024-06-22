@@ -1,5 +1,4 @@
 require 'csv'
-
 class ReportsController < ApplicationController
   def balance
     # Gere os dados do relatório
