@@ -39,4 +39,12 @@ end
       paid_at: Faker::Date.between(from: 1.year.ago, to: Date.today)
     )
   end
+
+  200.times do
+    Debt.create(
+      amount: Faker::Number.between(from: 100_000, to: 200_000),
+      person: Person.order('random()').first,
+      observation: Faker::Lorem.paragraph
+    )
+  end
 end

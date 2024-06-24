@@ -60,7 +60,7 @@ class Dashboard
   end
 
   def people100k
-    Debt.where("amount > 100000").includes(:person).order(:created_at).limit(10)
+    Debt.where("amount > 100000").includes(:person).order(created_at: :desc).limit(10)
   end
 
   private
