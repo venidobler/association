@@ -59,6 +59,10 @@ class Dashboard
     end
   end
 
+  def people100k
+    Debt.where("amount > 100000").includes(:person).order(:created_at).limit(10)
+  end
+
   private
 
   def active_people_count(active)
